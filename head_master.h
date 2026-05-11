@@ -10,6 +10,9 @@
 // Definição de valores no sistema:
 #define COLUNA 20
 #define LINHA 20
+#define MIN_OBSTACULOS 40
+#define MAX_OBSTACULOS 60
+#define FAIXA (MAX_OBSTACULOS - MIN_OBSTACULOS) + 1
 
 // Definindo o meu tipo:
 typedef enum {
