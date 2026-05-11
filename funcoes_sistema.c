@@ -15,3 +15,10 @@ void limparMatriz(ENTIDADE matriz[LINHA][COLUNA]){
         }
     }
 }
+
+void gerarObstaculos(ENTIDADE matriz[LINHA][COLUNA], int quant_obstaculos){
+
+    // Aqui gero os obstaculos em uma quantidade aleatoria entre 40 a 60:
+    // Futuramente irei modificar o código para gerar entre 10 a 15% do tamanho total da matriz, mas por enquanto usei valores FLAT para teste:
+    quant_obstaculos = (rand() % FAIXA) + MIN_OBSTACULOS; // menor valor 0 + 40 ou maior valor 20 + 40.
+}
