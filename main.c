@@ -1,5 +1,6 @@
-#include <stdio.h>
+#include "HEAD_MASTER.h"
 
 int main () {
-    printf("Hello World");
+    // Para garantir uma nova Seed a cada interação uso o srand:
+    srand(time(NULL));
 }
