@@ -16,9 +16,24 @@ void limparMatriz(ENTIDADE matriz[LINHA][COLUNA]){
     }
 }
 
-void gerarObstaculos(ENTIDADE matriz[LINHA][COLUNA], int quant_obstaculos){
+void gerarEntidades (ENTIDADE matriz[LINHA][COLUNA], TIPO_ENTIDADE ent, int quant_ent) {
 
-    // Aqui gero os obstaculos em uma quantidade aleatoria entre 40 a 60:
-    // Futuramente irei modificar o código para gerar entre 10 a 15% do tamanho total da matriz, mas por enquanto usei valores FLAT para teste:
-    quant_obstaculos = (rand() % FAIXA) + MIN_OBSTACULOS; // menor valor 0 + 40 ou maior valor 20 + 40.
+    // Declaro e inicializo quantos obstaculos tem atualmente:
+    int cont_ent = 0;
+    // Declaro as variaveis que guardaram as colunas e linhas sorteadas:
+    int linha_sorteada, coluna_sorteada;
+    
+    // Inicio o loop para sortear e adicionar os obstaculos na matriz:
+    while (quant_ent > cont_ent) { // Inicio do loop.
+        // Aqui implemento a lógica de sorteio de casas da minha matriz:
+        // Futuramente também será adaptado para o tamanho da matriz
+        linha_sorteada = rand() % LINHA;
+        coluna_sorteada = rand() % COLUNA;
+        
+        // Aqui olho se o espaço já não tem um obstaculo:
+        if (matriz[linha_sorteada][coluna_sorteada].tipo == VAZIO) { // Se ele não tiver eu posso adicionar.
+            matriz[linha_sorteada][coluna_sorteada].tipo = ent;
+            cont_ent++; // incremento o contador
+        }
+    } // Fim do Loop.
 }
