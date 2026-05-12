@@ -27,4 +27,4 @@ O projeto gera uma matriz quadrada (20x20 futuramente será a escolha do jogador
 
 1. Clone o repositório:
    ```bash
-   git clone [https://github.com/seu-usuario/pastor-vs-lobo.git](https://github.com/Tiago-Aragao/pastorChess)
+   git clone [https://github.com/Tiago-Aragao/pastorChess.git](https://github.com/Tiago-Aragao/pastorChess.git)
