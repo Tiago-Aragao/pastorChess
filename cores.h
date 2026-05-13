@@ -11,5 +11,5 @@ Aqui será apenas as cores que usarei no terminal.
 #define VERMELHO "\033[91m"
 #define VERDE    "\033[92m"
 #define CINZA    "\033[90m"
-
+#define ROXO     "\033[035m"
 #endif
