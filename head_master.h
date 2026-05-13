@@ -28,8 +28,4 @@ typedef struct {
     TIPO_ENTIDADE tipo;
     int vel_movimento;
 } ENTIDADE;
-
-// Definindo a Matriz:
-ENTIDADE matriz_atual[LINHA][COLUNA]; // OBS: read only
-ENTIDADE matriz_futura[LINHA][COLUNA]; // OBS: Matriz que guarda o futuro
 #endif
