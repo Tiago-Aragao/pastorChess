@@ -25,9 +25,22 @@ int main () {
     gerarEntidades(matriz_atual, LOBO, 7);
     gerarEntidades(matriz_atual, PASTOR, 2);
 
-    // Exibindo a matriz:
-    exibirMatriz(matriz_atual);
-    printf("\nQuantidade de Obstáculos: %d\n", qtd_obs);
-    // encerrando programa:
+    while(1){
+        // Exibindo a matriz:
+        exibirMatriz(matriz_atual);
+        printf("Matriz atual -- TURNOS: %d \n", turnos);
+        
+        // pauso meio segundo para dar tempo de ver a movimentação
+        Sleep(500); 
+        // Copiando a matriz_atual para a matriz_futura:
+        memcpy(matriz_futura, matriz_atual, sizeof(matriz_atual));
+        // movendo a ovelha:
+        moverOvelha(matriz_atual, matriz_futura);
+        // Copiando a matriz_futura para a matriz_atual:
+        memcpy(matriz_atual, matriz_futura, sizeof(matriz_futura));
+
+        turnos++;
+    }
+    
     return 0;
 }
