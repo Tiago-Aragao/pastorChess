@@ -92,3 +92,43 @@ void exibirMatriz (ENTIDADE matriz[LINHA][COLUNA]) {
     
     printf("---------------------------\n");
 }
+
+// Mover Ovelha
+void moverOvelha (const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINHA][COLUNA]) { // Inicio moverOvelha.
+
+    /*
+    Está função move a ovelha checando se o espaço futuro está vazio.
+    Por enquanto o movimento é aleatorio e sem nenhuma inteligencia ou lógica por parte da ovelha, apenas aplicando fisica e regra de negocio.
+    */
+
+    // Declaração dos arrays que terão as posições cardeais (NORTE, SUL, LESTE, OESTE):
+    int direcao_linha[] = {1,-1,0,0};
+    int direcao_coluna[] = {0,0,1,-1};
+
+    // Inicio o for que irá varrer a matriz procurando ovelhas para mover:
+    for (int i=0;i<LINHA;i++) { // Inicio forI.
+        for (int j=0;j<COLUNA;j++) { // Inicio forJ.
+            if (matriz[i][j].tipo == OVELHA) { // Inicio IF.
+                // Aqui é a variavel que confirma se ela andou e a variavel de controle de tentativas:
+                int andou=1, tentativas = 0; // 
+                while (andou && tentativas < 4) { // Inicio While.
+                    // Sorteio em qual direção ela vai andar:
+                    int sorteio = rand() % 4;
+                    // FAço o calculo para saber a nova direção:
+                    int novaL = i +  direcao_linha[sorteio]; // Somo a posição atual da linha com o valor sorteado.
+                    int novaC = j + direcao_coluna[sorteio]; // Somo a posição atual da coluna com o valor sorteado.
+                    // Aqui eu inicio a checagem se ela não sai do mapa ou não tem obstaculo:
+                    if (novaL >= 0 && novaL <= LINHA-1 && novaC >= 0 && novaC <= COLUNA-1 && matriz[novaL][novaC].tipo == VAZIO && matriz_futura[novaL][novaC].tipo == VAZIO) { // Se a ovelha não for sair do mapa nem horizontalmente, verticalmente nem se deparar com um obstaculo.
+                        // Coloco a posição atual como VAZIO:
+                        matriz_futura[i][j].tipo = VAZIO;
+                        // Depois atualizo a direção sorteada com a OVELHA:
+                        matriz_futura[novaL][novaC].tipo = OVELHA;
+                        // Aqui atualizo para sair do while:
+                        andou = 0;
+                    } // Fim if.
+                    tentativas++;
+                } // Fim While.
+            } // Fim if.
+        } // Fim forJ.
+    } // Fim forI.
+} // Fim moverOvelha.
