@@ -6,6 +6,8 @@ int main () {
 
     // Para garantir uma nova Seed a cada interação uso o srand:
     srand(time(NULL));
+    // Chamo a configuração do Terminal:
+    configurarTerminal();
 
     // Definindo as Matriz:
     ENTIDADE matriz_atual[LINHA][COLUNA]; // OBS: read only
@@ -13,7 +15,7 @@ int main () {
     // Declarando e sorteando a quantidade de obstáculos:
     int qtd_obs = (rand() % FAIXA) + MIN_OBSTACULOS;
     // Declarando variaveis gerais:
-    int turnos = 0, rodando = 1;
+    int rodadas = 0, rodando = 1, pontuacao_lobos = 0;
 
     // Limpando a matriz:
     limparMatriz(matriz_atual);
@@ -28,18 +30,32 @@ int main () {
     while(1){
         // Exibindo a matriz:
         exibirMatriz(matriz_atual);
-        printf("Matriz atual -- TURNOS: %d \n", turnos);
+        printf("========================================\n");
+        printf("Matriz atual -- TURNOS: %d \n", rodadas);
+        printf("Numero de Obstaculos: %d \n", qtd_obs);
+        printf("Pontuação:\nLobos: %d \n", pontuacao_lobos);
+        printf("========================================\n");
         
-        // pauso meio segundo para dar tempo de ver a movimentação
-        Sleep(500); 
-        // Copiando a matriz_atual para a matriz_futura:
+        // Pausa para dar um sweet move para os membros da matriz:
+        Sleep(250);
+        
+        //TURNO 1: OVELHA
+        // Copio a matriz atual para a futura:
         memcpy(matriz_futura, matriz_atual, sizeof(matriz_atual));
-        // movendo a ovelha:
+        // Movo a ovelha:
         moverOvelha(matriz_atual, matriz_futura);
-        // Copiando a matriz_futura para a matriz_atual:
+        // Atualizo a matriz atual com as infos da matriz futura:
         memcpy(matriz_atual, matriz_futura, sizeof(matriz_futura));
 
-        turnos++;
+        //TURNO 2: LOBOS
+        // Copio a matriz atual para a futura:
+        memcpy(matriz_futura, matriz_atual, sizeof(matriz_atual));
+        // Movo a ovelha:
+        pontuacao_lobos += moverLobo(matriz_atual, matriz_futura);
+        // Atualizo a matriz atual com as infos da matriz futura:
+        memcpy(matriz_atual, matriz_futura, sizeof(matriz_futura));
+
+        rodadas++;
     }
     
     return 0;
