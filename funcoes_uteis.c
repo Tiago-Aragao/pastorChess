@@ -17,6 +17,9 @@ void limparTela() {
 }
 
 void configurarTerminal() {
+    /*
+    Está função configura o terminal para ele ler e entender melhor o codigo ANSI.
+    */
     // Pego a "ferramenta" (Handle) que controla a tela do Windows:
     HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     if (hOut == INVALID_HANDLE_VALUE) return; // Tratamento de erro.
