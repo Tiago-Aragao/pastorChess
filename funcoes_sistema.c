@@ -54,11 +54,8 @@ void gerarEntidades (ENTIDADE matriz[LINHA][COLUNA], TIPO_ENTIDADE ent, int quan
 
 void exibirMatriz (ENTIDADE matriz[LINHA][COLUNA]) {
     
-    // Limpo a tela antes de cada rodada:
+    // "Limpo a tela" antes de cada rodada:
     limparTela();
-
-    // Separador:
-    printf("---------------------------\n");
     
     for (int i = 0; i < LINHA; i++) {
         for (int j = 0; j < COLUNA; j++) {
@@ -89,8 +86,6 @@ void exibirMatriz (ENTIDADE matriz[LINHA][COLUNA]) {
         }
         printf("\n"); // Quebra a linha toda vez que terminar de imprimir as colunas
     }
-    
-    printf("---------------------------\n");
 }
 
 // Mover Ovelha:
@@ -174,7 +169,7 @@ int moverLobo (const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINH
                             // Agora faço a movimentação do lobo normalmente:
                             // Coloco a posição atual como VAZIO:
                             matriz_futura[i][j].tipo = VAZIO;
-                            // Depois atualizo a direção sorteada com a OVELHA:
+                            // Depois atualizo a direção sorteada com o LOBO:
                             matriz_futura[novaL][novaC].tipo = LOBO;
                             // Aqui atualizo para sair do while:
                             andou = 0;
@@ -188,3 +183,55 @@ int moverLobo (const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINH
     // Retorno a pontuação que o lobo fez nessa rodada.
     return pontos;
 } // Fim moverLobo.
+
+// Mover Pastor e Salvar Ovelha:
+int moverPastor (const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINHA][COLUNA]) { // Inicio moverPastor.
+    
+    /*
+    Está função move o pastor para um espaço Vazio ou um espaço com Ovelha, retornando uma pontuação caso a o espaço seja OVELHA.
+    Por enquanto o movimento é aleatorio e sem nenhuma inteligencia ou lógica por parte do Pastor, apenas aplicando fisica e regra de negocio.
+    */
+
+    // Declaração dos arrays que terão as posições cardeais (NORTE, SUL, LESTE, OESTE):
+    int direcao_linha[] = {1,-1,0,0};
+    int direcao_coluna[] = {0,0,1,-1};
+    // Aqui será meu contador de pontos que o Lobo gerou:
+    int pontos=0;
+    // Inicio o for que irá varrer a matriz procurando Pastores para mover:
+    for (int i=0;i<LINHA;i++) { // Inicio forI.
+        for (int j=0;j<COLUNA;j++) { // Inicio forJ.
+            if (matriz[i][j].tipo == PASTOR) { // Inicio IF.
+                // Aqui é a variavel que confirma se ela andou e a variavel de controle de tentativas:
+                int andou=1, tentativas = 0;
+                while (andou && tentativas < 4) { // Inicio While.
+                    // Sorteio em qual direção ela vai andar:
+                    int sorteio = rand() % 4;
+                    // FAço o calculo para saber a nova direção:
+                    int novaL = i +  direcao_linha[sorteio]; // Somo a posição atual da linha com o valor sorteado.
+                    int novaC = j + direcao_coluna[sorteio]; // Somo a posição atual da coluna com o valor sorteado.
+                    // Aqui eu inicio a checagem se o Lobo não sai do mapa ou não tem obstaculo:
+                    if (novaL >= 0 && novaL <= LINHA-1 && novaC >= 0 && novaC <= COLUNA-1) { // Testo primeiro se o Lobo não vai sair do mapa.
+                        // Aqui eu tento simplificar a minha leitura passando as logicas que seriam dentro do if para variaveis que serão retornadas em 0 e 1:
+                        int esta_vazio = (matriz[novaL][novaC].tipo == VAZIO && matriz_futura[novaL][novaC].tipo == VAZIO);
+                        int tem_ovelha = (matriz[novaL][novaC].tipo == OVELHA && matriz_futura[novaL][novaC].tipo == OVELHA);
+                        // Depois checo se o espaço é uma OVELHA ou VAZIO:
+                        if (esta_vazio || tem_ovelha) { // Se tiver faço a lógica seguir.
+                            // Aqui caso tenha uma Ovelha:
+                            if (tem_ovelha) pontos++; // Aumento a pontuação.
+                            // Agora faço a movimentação do lobo normalmente:
+                            // Coloco a posição atual como VAZIO:
+                            matriz_futura[i][j].tipo = VAZIO;
+                            // Depois atualizo a direção sorteada com o PASTOR:
+                            matriz_futura[novaL][novaC].tipo = PASTOR;
+                            // Aqui atualizo para sair do while:
+                            andou = 0;
+                        } // Fim if.
+                    } // Fim if.
+                    tentativas++;
+                } // Fim While.
+            } // Fim if.
+        } // Fim forJ.
+    } // Fim forI.
+    // Retorno a pontuação que o pastor fez nessa rodada.
+    return pontos;
+} // Fim moverPastor

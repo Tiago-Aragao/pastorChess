@@ -14,4 +14,5 @@ void exibirMatriz (ENTIDADE matriz[LINHA][COLUNA]);
 // Lógica de movimentação:
 void moverOvelha(const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINHA][COLUNA]);
 int moverLobo (const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINHA][COLUNA]);
+int moverPastor (const ENTIDADE matriz[LINHA][COLUNA], ENTIDADE matriz_futura[LINHA][COLUNA]);
 #endif
