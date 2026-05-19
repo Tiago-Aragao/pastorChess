@@ -15,7 +15,7 @@ int main () {
     // Declarando e sorteando a quantidade de obstáculos:
     int qtd_obs = (rand() % FAIXA) + MIN_OBSTACULOS;
     // Declarando variaveis gerais:
-    int rodadas = 0, rodando = 1, pontuacao_lobos = 0;
+    int rodadas = 0, rodando = 1, pontuacao_lobos = 0, pontuacao_pastores = 0;
 
     // Limpando a matriz:
     limparMatriz(matriz_atual);
@@ -24,18 +24,20 @@ int main () {
     // Gerando as entidades (quantidades para teste):
     gerarEntidades(matriz_atual, OBSTACULO, qtd_obs);
     gerarEntidades(matriz_atual, OVELHA, 45);
-    gerarEntidades(matriz_atual, LOBO, 7);
+    gerarEntidades(matriz_atual, LOBO, 2);
     gerarEntidades(matriz_atual, PASTOR, 2);
 
     while(1){
         // Exibindo a matriz:
         exibirMatriz(matriz_atual);
-        printf("========================================\n");
+        printf("-------------------------------------\n");
         printf("Matriz atual -- TURNOS: %d \n", rodadas);
         printf("Numero de Obstaculos: %d \n", qtd_obs);
-        printf("Pontuação:\nLobos: %d \n", pontuacao_lobos);
-        printf("========================================\n");
-        
+        printf("-------------------------------------\n");
+        printf("               PONTUACAO\n");
+        printf("-------------------------------------\n");
+        printf("PASTORES: %d\n", pontuacao_pastores);
+        printf("LOBOS: %d\n", pontuacao_lobos);
         // Pausa para dar um sweet move para os membros da matriz:
         Sleep(250);
         
@@ -50,8 +52,16 @@ int main () {
         //TURNO 2: LOBOS
         // Copio a matriz atual para a futura:
         memcpy(matriz_futura, matriz_atual, sizeof(matriz_atual));
-        // Movo a ovelha:
+        // Movo o lobo:
         pontuacao_lobos += moverLobo(matriz_atual, matriz_futura);
+        // Atualizo a matriz atual com as infos da matriz futura:
+        memcpy(matriz_atual, matriz_futura, sizeof(matriz_futura));
+
+        //TURNO 3: PASTOR
+        // Copio a matriz atual para a futura:
+        memcpy(matriz_futura, matriz_atual, sizeof(matriz_atual));
+        // Movo o pastor:
+        pontuacao_pastores += moverPastor(matriz_atual, matriz_futura);
         // Atualizo a matriz atual com as infos da matriz futura:
         memcpy(matriz_atual, matriz_futura, sizeof(matriz_futura));
 
