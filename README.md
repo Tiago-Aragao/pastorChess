@@ -3,29 +3,35 @@
 ![Linguagem](https://img.shields.io/badge/linguagem-C-blue)
 
 ## 🎮 O Jogo
-O projeto gera uma matriz quadrada (20x20 futuramente será a escolha do jogador) onde os elementos são distribuídos aleatoriamente. A cada rodada, os personagens se movem e as interações de "conflito" são resolvidas automaticamente.
+O projeto gera uma matriz quadrada onde os elementos são distribuídos aleatoriamente. A cada rodada, os personagens se movem e as interações de "conflito" são resolvidas automaticamente.
 
 ### 👥 Personagens e Regras
 | Personagem | Ícone | Ação Principal |
 | :--- | :---: | :--- |
 | **Lobo** | `L` | Mata a Ovelha (Ganha 1 ponto para o time) |
-| **Pastor** | `P` | Salva a Ovelha (Ganha 1 ponto para o time) ou Elimina o Lobo |
+| **Pastor** | `P` | Salva a Ovelha (Ganha 1 ponto para o time)|
 | **Ovelha** | `O` | Tenta sobreviver no mapa |
 | **Obstaculo** | `#` | Apenas ocupa espaço no mapa sem se mecher |
 
 ### ⚔️ Lógica de Interação
 * **Lobo + Ovelha:** O lobo elimina a ovelha. +1 ponto para os Lobos.
 * **Pastor + Ovelha:** O pastor resgata a ovelha. +1 ponto para os Pastores.
-* **Pastor + Lobo:** O pastor elimina o lobo do mapa.
+* **Pastor + Lobo:** O pastor elimina o lobo do mapa. (Implementação futura)
 
-### 🔧 Implementações Futuras
-* [ ] Movimento não aleatório (inteligencia de distancia _provavelmente código manhattan_)
-* [ ] Pastor ter pontos de vida onde ele perde um ponto sempre que elimina um lobo (_tentativa de quebrar o meta game de caça aos lobos caso ele venha a existir_)
-* [ ] O usuario poder escolher o tamanho da matriz e/ou número de elementos como obstaculos, lobos, ovelhas e pastores
-* [ ] Poderes para cada personagem: Ovelha se multiplicar em contato com outra, lobo se multiplicar em caso de contato com outro/ velocidade de movimento aumentada, pastor curar outro pastor em contato com outro
-* [ ] Implementar novos personagens com funções unicas: Cachorro
+### 🔧 Implementações:
+* [x] Geração procedural do mapa e entidades.
+* [x] Motor de movimento para ovelhas (Detecção de colisão).
+* [x] Motor de caça e pontuação para Lobos.
+* [ ] Motor de salvamento e pontuação para Pastores.
+* [ ] Implementação de IA (Distância de Manhattan) e refinamento de UI.
+* [ ] Pastor eliminar Lobo.
 
-1. Clone o repositório:
+Clone o repositório e/ou execute o programa:
    ```bash
+   # Clone o repositório
    git clone https://github.com/Tiago-Aragao/pastorChess.git
+   # Compile os módulos
+   gcc main.c funcoes_sistema.c funcoes_uteis.c -o simulação.exe
+   # Execute
+   ./simulação.exe
    ```
