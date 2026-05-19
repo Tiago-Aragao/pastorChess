@@ -3,5 +3,6 @@
 
 // Protótipos das funções uteis:
 void limparTela();
+void configurarTerminal();
 
 #endif
