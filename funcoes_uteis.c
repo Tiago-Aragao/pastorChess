@@ -33,4 +33,6 @@ void configurarTerminal() {
     
     // Aqui eu salvo a nova configuração no sistema:
     SetConsoleMode(hOut, dwMode);
+    // Aqui faço o console exibir UTF-8:
+    SetConsoleOutputCP(CP_UTF8);
 }
