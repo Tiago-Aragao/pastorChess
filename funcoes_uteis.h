@@ -2,7 +2,7 @@
 #define FUNCOES_UTEIS_H
 
 // Protótipos das funções uteis:
-void limparTela();
+void sobrescreverTela();
 void configurarTerminal();
 
 #endif
