@@ -29,4 +29,14 @@ typedef struct {
     TIPO_ENTIDADE tipo;
     int vel_movimento;
 } ENTIDADE;
+
+// Struct para definir minha direção que será retornada no definirDirecao:
+typedef struct {
+    int l; // LINHA
+    int c; // COLUNA
+} COORDENADA;
+
+// Crio um ponteiro de função chamado funcao_movimento:
+typedef int (*funcao_movimento)(int, int, const ENTIDADE[LINHA][COLUNA], ENTIDADE[LINHA][COLUNA]);
+
 #endif
