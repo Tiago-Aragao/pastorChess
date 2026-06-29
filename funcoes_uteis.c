@@ -2,18 +2,20 @@
 
 // Limpar tela:
 void sobrescreverTela() {
-    /*
-    Função que identifica qual sistema operacional é e limpa a tela.
-    */
-    // #ifdef _WIN32 // Para windows.
-        //system("cls");
-    //#else // Para Linux.
-        //system("clear");
-    //#endif
-
     // Move o cursor para a posição [0;0] do terminal, sem apagar o que já está lá.
     // O próximo printf vai sobrescrever o texto existente resolvendo as piscadelas:
     printf("\033[H");
+}
+
+void limparTela () {
+    /*
+    Função que identifica qual sistema operacional é e limpa a tela.
+    */
+    #ifdef _WIN32 // Para windows.
+        system("cls");
+    #else // Para Linux.
+        system("clear");
+    #endif
 }
 
 void configurarTerminal() {

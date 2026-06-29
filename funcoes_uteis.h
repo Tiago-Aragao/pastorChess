@@ -4,5 +4,6 @@
 // Protótipos das funções uteis:
 void sobrescreverTela();
 void configurarTerminal();
+void limparTela();
 
 #endif
